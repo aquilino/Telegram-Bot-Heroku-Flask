@@ -18,11 +18,12 @@ def logger(message):
 def answer(word):
     api = requests.get(f'{page}{word}')
     json_data = json.loads(api.content)
-    logger(json_data)
+
     market_data = json_data['market_data']['current_price']['eur']
     market_cap = json_data['market_data']['market_cap']['eur']
     links = json_data['links']['homepage'][0]
     symbol= json_data['symbol']
+    logger(json.dumps(json_data, indent=4, sort_keys=True))
     return f'Symbol: {symbol}\nCurrent_price: {market_data}€\nMarket_cap: {market_cap}€\nOfficial_website: {links}'
 
 
@@ -45,7 +46,6 @@ def main():
         text = payload['message']['text']
 #        message = "Hola mi Amo!!"
 #        telegramApi.send_message(chat_id, message)
-        logger(text)
         answer(text)
     logger(json.dumps(payload, indent=4, sort_keys=True))
     return 'OK', 201
