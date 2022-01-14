@@ -42,10 +42,12 @@ def main():
     if payload['message']['text'] == '/hola':
         chat_id = payload['message']['chat']['id']
         name = payload['message']['chat']['first_name']
-        message = "Hola mi Amo!!"
-        telegramApi.send_message(chat_id, message)
+        text = payload['message']['text']
+#        message = "Hola mi Amo!!"
+#        telegramApi.send_message(chat_id, message)
+        answer(text)
     logger(json.dumps(payload, indent=4, sort_keys=True))
-    logger(name)
+    logger(name,text)
     return 'OK', 201
 
 
