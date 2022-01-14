@@ -48,16 +48,16 @@ def main():
             #text = payload['message']['text']
             message = "Hola mi Amo!!"
             telegramApi.send_message(chat_id, message)
-        elif payload['message']['text'] != '/hola':
-            chat_id = payload['message']['chat']['id']
-            text =  payload['message']['text']
-            message = answer(text)
-            telegramApi.send_message(chat_id, message)
-#        else:
+#        elif payload['message']['text'] != '/hola':
 #            chat_id = payload['message']['chat']['id']
-#            name = payload['message']['chat']['first_name']
-#            message = "No te entiendo " + name
-#            telegramApi.send_message(chat_id, message)   
+#            text =  payload['message']['text']
+#            message = answer(text)
+#            telegramApi.send_message(chat_id, message)
+        else:
+            chat_id = payload['message']['chat']['id']
+            name = payload['message']['chat']['first_name']
+            message = "No te entiendo " + name
+            telegramApi.send_message(chat_id, message)   
         return 'OK', 201
 
 
