@@ -11,7 +11,7 @@ app = Flask(__name__)
 @app.route('/', methods=['POST'])
 
 def answer(word):
-    api = f'{page}{word}'
+    api = requests.get(f'{page}{word}')
     json_data = json.loads(api.content)
     market_data = json_data['market_data']['current_price']['eur']
     market_cap = json_data['market_data']['market_cap']['eur']
