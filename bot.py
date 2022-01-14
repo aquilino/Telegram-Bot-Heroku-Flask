@@ -3,7 +3,7 @@ import os
 from flask import Flask, request, json
 
 BOT_URL = f'https://api.telegram.org/bot{os.environ["BOT_KEY"]}/'  # <-- add your telegram token as environment variable
-
+page = 'https://api.coingecko.com/api/v3/coins/'
 
 app = Flask(__name__)
 
@@ -11,7 +11,7 @@ app = Flask(__name__)
 @app.route('/', methods=['POST'])
 
 def answer(word):
-    api = "https://api.coingecko.com/api/v3/coins/{word}"
+    api = f'{page}{word}'
     json_data = json.loads(api.content)
     market_data = json_data['market_data']['current_price']['eur']
     market_cap = json_data['market_data']['market_cap']['eur']
