@@ -1,14 +1,14 @@
+from flask import Flask, request, jsonify, make_response
 from telegramApi import TelegramApi
 import os, sys , re, json, time
-from flask import Flask, request, jsonify, make_response
 
-#BOT_URL = f'https://api.telegram.org/bot{os.environ["BOT_KEY"]}/'  # <-- add your telegram token as environment variable
+#BOT_URL = f'https://api.telegram.org/bot{os.environ["{BOT_KEY}"]}/'  # <-- add your telegram token as environment variable
 page = 'https://api.coingecko.com/api/v3/coins/'
 
 app = Flask(__name__)
 
 
-telegramApi = telegramApi(os.environ["BOT_KEY"])
+telegramApi = TelegramApi(os.environ["BOT_KEY"])
 
 def logger(message):
     timestamp = time.strftime('%y-%m-%d %H:%M:%S', time.gmtime())
@@ -31,7 +31,7 @@ def get_status():
     return 'Up and running', 201
 
 
-@app.route('/', methods=[.'GET', 'POST'])
+@app.route('/', methods=['GET', 'POST'])
 def main():
     try:
         if request.method == 'GET' or not request.json:
