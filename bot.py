@@ -64,7 +64,7 @@ def main():
  #   return ''
 
 
-@app.errorhamdler(404)
+@app.errorhandler(404)
 def not_found(error):
     return make_response(jsonify({'error':'Not found'}), 404)
 
