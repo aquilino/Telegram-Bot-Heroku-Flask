@@ -23,7 +23,6 @@ def answer(word):
     market_cap = json_data['market_data']['market_cap']['eur']
     links = json_data['links']['homepage'][0]
     symbol= json_data['symbol']
-    logger(json.dumps(json_data, indent=4, sort_keys=True))
     return f'Symbol: {symbol}\nCurrent_price: {market_data}€\nMarket_cap: {market_cap}€\nOfficial_website: {links}'
 
 
@@ -43,9 +42,9 @@ def main():
     if payload['message']['text'] == '/hola':
         chat_id = payload['message']['chat']['id']
         name = payload['message']['chat']['first_name']
-        text = payload['message']['text']
-#        message = "Hola mi Amo!!"
-        telegramApi.send_message(chat_id, answer(text))
+        #text = payload['message']['text']
+        message = "Hola mi Amo!!"
+        telegramApi.send_message(chat_id, message)
         
     logger(json.dumps(payload, indent=4, sort_keys=True))
     return 'OK', 201
