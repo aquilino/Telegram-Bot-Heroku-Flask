@@ -18,7 +18,7 @@ def logger(message):
 def answer(word):
     api = requests.get(f'{page}{word}')
     json_data = json.loads(api.content)
-    print(json_data)
+    logger(json_data)
     market_data = json_data['market_data']['current_price']['eur']
     market_cap = json_data['market_data']['market_cap']['eur']
     links = json_data['links']['homepage'][0]
@@ -41,6 +41,10 @@ def main():
     payload = request.json
     logger(json.dumps(payload, indent=4, sort_keys=True))
     return 'OK', 201
+    if payload["message"]["text"] == "/hola":
+        chat_id = payload["message"]["chat"]["id"]
+        name = payload["message"]["from"]["first_name"]
+        message = "Hola" + name + "mi Amo!!"
 #    data = request.json
 
  #   print(data)  # Comment to hide what Telegram is sending you
@@ -55,12 +59,12 @@ def main():
  #       "chat_id": chat_id,
  #       "text": word,
  #   }
-
+        telegramApi.sendMessage(chat_id, message)
  #   message_url = BOT_URL + 'sendMessage'
  #   requests.post(message_url, json=json_data)
  #   message_url = BOT_URL + 'sendMessage'
  #   requests.post(answer(json=json_word.word), json=json_word)
- #   TelegramApi.sendMessage(chat_id, message)
+ #  
  #   return ''
 
 
