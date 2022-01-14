@@ -45,9 +45,9 @@ def main():
         text = payload['message']['text']
 #        message = "Hola mi Amo!!"
 #        telegramApi.send_message(chat_id, message)
+        logger(text)
         answer(text)
     logger(json.dumps(payload, indent=4, sort_keys=True))
-    logger(name,text)
     return 'OK', 201
 
 
