@@ -36,7 +36,7 @@ def main():
     try:
         if request.method == 'GET' or not request.json:
             return 'OK', 200
-     except Exception:
+    except Exception:
         return 'OK', 200
     payload = request.json
     logger(json.dumps(payload, indent=4, sort_keys=True))
