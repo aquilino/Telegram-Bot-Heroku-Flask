@@ -13,7 +13,6 @@ app = Flask(__name__)
 def answer(word):
     api = "https://api.coingecko.com/api/v3/coins/{word}"
     json_data = json.loads(api.content)
-    //print(api.content)
     market_data = json_data['market_data']['current_price']['eur']
     market_cap = json_data['market_data']['market_cap']['eur']
     links = json_data['links']['homepage'][0]
