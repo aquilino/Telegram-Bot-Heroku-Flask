@@ -13,6 +13,7 @@ app = Flask(__name__)
 def answer(word):
     api = requests.get(f'{page}{word}')
     json_data = json.loads(api.content)
+    print(json_data)
     market_data = json_data['market_data']['current_price']['eur']
     market_cap = json_data['market_data']['market_cap']['eur']
     links = json_data['links']['homepage'][0]
@@ -28,12 +29,17 @@ def main():
     word = message
     json_data = {
         "chat_id": chat_id,
-        "text":  word.answer(),
+        "text": message,
+    }
+        json_word = {
+        "chat_id": chat_id,
+        "text": word,
     }
 
     message_url = BOT_URL + 'sendMessage'
     requests.post(message_url, json=json_data)
-
+    message_url = BOT_URL + 'sendMessage'
+    requests.post(answer(json=json_data.text), json=json_data)
     return ''
 
 
