@@ -1,4 +1,4 @@
-import requests
+import requests ,os
 
 BOT_URL = f'https://api.telegram.org/bot{os.environ["BOT_KEY"]}/'  # <-- add your telegram token as environment variable
 
