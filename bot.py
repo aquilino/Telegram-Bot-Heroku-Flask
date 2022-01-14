@@ -28,7 +28,7 @@ def main():
     word = message
     json_data = {
         "chat_id": chat_id,
-        "text":  answer(word),
+        "text":  word.answer(),
     }
 
     message_url = BOT_URL + 'sendMessage'
