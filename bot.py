@@ -1,14 +1,19 @@
-import telegramApi 
-import os
-from flask import Flask, request, json
+from telegramApi import TelegramApi
+import os, sys ,re, json, time
+from flask import Flask, request, jsonify, make_response
 
-BOT_URL = f'https://api.telegram.org/bot{os.environ["BOT_KEY"]}/'  # <-- add your telegram token as environment variable
+#BOT_URL = f'https://api.telegram.org/bot{os.environ["BOT_KEY"]}/'  # <-- add your telegram token as environment variable
 page = 'https://api.coingecko.com/api/v3/coins/'
 
 app = Flask(__name__)
 
 
-@app.route('/', methods=['POST'])
+telegramApi = telegramApi(os.environ["BOT_KEY"])
+
+def logger(message):
+    timestamp = time.strftime('%y-%m-%d %H:%M:%S', time.gmtime())
+    sys.stdout.write('{} | {}\n'.format(timestamp, message))
+
 
 def answer(word):
     api = requests.get(f'{page}{word}')
@@ -20,7 +25,22 @@ def answer(word):
     symbol= json_data['symbol']
     return f'Symbol: {symbol}\nCurrent_price: {market_data}€\nMarket_cap: {market_cap}€\nOfficial_website: {links}'
 
-def main():  
+
+@app.route('/status', methods=['GET'])
+def get_status():
+    return 'Up and running', 201
+
+
+@app.route('/', methods=[.'GET', 'POST'])
+def main():
+    try:
+        if request.method == 'GET' or not request.json:
+            return 'OK', 200
+     except Exception:
+        return 'OK', 200
+    payload = request.json
+    logger(json.dumps(payload, indent=4, sort_keys=True))
+    return 'OK', 201
 #    data = request.json
 
  #   print(data)  # Comment to hide what Telegram is sending you
@@ -40,8 +60,13 @@ def main():
  #   requests.post(message_url, json=json_data)
  #   message_url = BOT_URL + 'sendMessage'
  #   requests.post(answer(json=json_word.word), json=json_word)
-    TelegramApi.sendMessage(chat_id, message)
-    return ''
+ #   TelegramApi.sendMessage(chat_id, message)
+ #   return ''
+
+
+@app.errorhamdler(404)
+def not_found(error):
+    return make_response(jsonify({'error':'Not found'}), 404)
 
 
 if __name__ == '__main__':  
