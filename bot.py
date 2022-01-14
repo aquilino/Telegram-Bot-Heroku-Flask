@@ -39,7 +39,7 @@ def main():
     message_url = BOT_URL + 'sendMessage'
     requests.post(message_url, json=json_data)
     message_url = BOT_URL + 'sendMessage'
-    requests.post(answer(json=json_data.text), json=json_data)
+    requests.post(answer(json=json_word.word), json=json_word)
     return ''
 
 
