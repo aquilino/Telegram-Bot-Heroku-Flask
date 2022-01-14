@@ -1,4 +1,4 @@
-from flask import Flask, request, jsonify, make_response, render_template
+from flask import Flask, request, jsonify, make_response
 from telegramApi import TelegramApi
 import os, sys , re, json, time, requests
 
@@ -25,9 +25,6 @@ def answer(word):
     symbol= json_data['symbol']
     return f'Symbol: {symbol}\nCurrent_price: {market_data}€\nMarket_cap: {market_cap}€\nOfficial_website: {links}'
 
-@app.route('/home')
-def home():
-    return render_template('home.html')
 
 @app.route('/status', methods=['GET'])
 def get_status():
