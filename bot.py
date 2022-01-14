@@ -44,28 +44,9 @@ def main():
     if payload["message"]["text"] == "/hola":
         chat_id = payload["message"]["chat"]["id"]
         name = payload["message"]["from"]["first_name"]
-        message = "Hola mi Amo!!"
-#    data = request.json
+        message = "Hola mi Amo!!" + name
 
- #   print(data)  # Comment to hide what Telegram is sending you
- #   chat_id = data['message']['chat']['id']
- #  message = data['message']['text']
- #   word = message
- #  json_data = {
- #       "chat_id": chat_id,
- #       "text": message,
- #   }
- #   json_word = {
- #       "chat_id": chat_id,
- #       "text": word,
- #   }
-        telegramApi.sendMessage(chat_id, message)
- #   message_url = BOT_URL + 'sendMessage'
- #   requests.post(message_url, json=json_data)
- #   message_url = BOT_URL + 'sendMessage'
- #   requests.post(answer(json=json_word.word), json=json_word)
- #  
- #   return ''
+        telegramApi.sendmessage(chat_id, message)
 
 
 @app.errorhandler(404)
