@@ -39,14 +39,14 @@ def main():
     except Exception:
         return 'OK', 200
     payload = request.json
-    logger(json.dumps(payload, indent=4, sort_keys=True))
-    return 'OK', 201
     if payload["message"]["text"] == "/hola":
         chat_id = payload["message"]["chat"]["id"]
         name = payload["message"]["from"]["first_name"]
         message = "Hola mi Amo!!" + name
         logger(name)
         telegramApi.sendmessage(chat_id, message)
+    logger(json.dumps(payload, indent=4, sort_keys=True))
+    return 'OK', 201
 
 
 @app.errorhandler(404)
