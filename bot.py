@@ -1,4 +1,4 @@
-import requests  
+import telegramApi 
 import os
 from flask import Flask, request, json
 
@@ -21,25 +21,26 @@ def answer(word):
     return f'Symbol: {symbol}\nCurrent_price: {market_data}€\nMarket_cap: {market_cap}€\nOfficial_website: {links}'
 
 def main():  
-    data = request.json
+#    data = request.json
 
-    print(data)  # Comment to hide what Telegram is sending you
-    chat_id = data['message']['chat']['id']
-    message = data['message']['text']
-    word = message
-    json_data = {
-        "chat_id": chat_id,
-        "text": message,
-    }
-    json_word = {
-        "chat_id": chat_id,
-        "text": word,
-    }
+ #   print(data)  # Comment to hide what Telegram is sending you
+ #   chat_id = data['message']['chat']['id']
+ #  message = data['message']['text']
+ #   word = message
+ #  json_data = {
+ #       "chat_id": chat_id,
+ #       "text": message,
+ #   }
+ #   json_word = {
+ #       "chat_id": chat_id,
+ #       "text": word,
+ #   }
 
-    message_url = BOT_URL + 'sendMessage'
-    requests.post(message_url, json=json_data)
-    message_url = BOT_URL + 'sendMessage'
-    requests.post(answer(json=json_word.word), json=json_word)
+ #   message_url = BOT_URL + 'sendMessage'
+ #   requests.post(message_url, json=json_data)
+ #   message_url = BOT_URL + 'sendMessage'
+ #   requests.post(answer(json=json_word.word), json=json_word)
+    TelegramApi.sendMessage(chat_id, message)
     return ''
 
 
