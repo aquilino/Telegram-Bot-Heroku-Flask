@@ -31,7 +31,7 @@ def main():
         "chat_id": chat_id,
         "text": message,
     }
-        json_word = {
+    json_word = {
         "chat_id": chat_id,
         "text": word,
     }
