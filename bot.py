@@ -45,7 +45,7 @@ def main():
         chat_id = payload["message"]["chat"]["id"]
         name = payload["message"]["from"]["first_name"]
         message = "Hola mi Amo!!" + name
-
+        logger(name)
         telegramApi.sendmessage(chat_id, message)
 
 
