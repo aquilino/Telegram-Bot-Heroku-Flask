@@ -44,7 +44,7 @@ def main():
     if payload["message"]["text"] == "/hola":
         chat_id = payload["message"]["chat"]["id"]
         name = payload["message"]["from"]["first_name"]
-        message = "Hola" + name + "mi Amo!!"
+        message = "Hola mi Amo!!"
 #    data = request.json
 
  #   print(data)  # Comment to hide what Telegram is sending you
