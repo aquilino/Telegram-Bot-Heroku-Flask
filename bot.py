@@ -19,11 +19,12 @@ def answer(word):
     api = requests.get(f'{page}{word}')
     json_data = json.loads(api.content)
     logger(json.dumps(json_data, indent=4, sort_keys=True))
-    market_data = json_data["market_data"]["current_price"]["eur"]
-    market_cap = json_data["market_data"]["market_cap"]["eur"]
-    links = json_data["links"]["homepage"][0]
-    symbol= json_data["symbol"]
-    msg = f"Symbol: {symbol}\nCurrent_price: {market_data}€\nMarket_cap: {market_cap}€\nOfficial_website: {links}"
+    if "market_data" in json_data:
+        market_data = json_data["market_data"]["current_price"]["eur"]
+        market_cap = json_data["market_data"]["market_cap"]["eur"]
+        links = json_data["links"]["homepage"][0]
+        symbol= json_data["symbol"]
+        msg = f"Symbol: {symbol}\nCurrent_price: {market_data}€\nMarket_cap: {market_cap}€\nOfficial_website: {links}"
     return msg
    
 
