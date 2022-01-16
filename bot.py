@@ -31,7 +31,7 @@ def get_status():
     return 'Up and running', 201
 
 
-@app.route('/', methods=['GET', 'POST'])
+@app.route('/{}'.os.environ["BOT_KEY"], methods=['GET', 'POST'])
 def main():
     try:
         if request.method == 'GET' or not request.json:
