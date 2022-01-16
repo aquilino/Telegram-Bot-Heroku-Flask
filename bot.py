@@ -20,7 +20,6 @@ def answer(word):
     json_data = json.loads(api.content)
     logger(json.dumps(json_data, indent=4, sort_keys=True))
     market_data = json_data["market_data"]["current_price"]["eur"]
-    logger(json.dumps(market_data, indent=4, sort_keys=True))
     market_cap = json_data["market_data"]["market_cap"]["eur"]
     links = json_data["links"]["homepage"][0]
     symbol= json_data["symbol"]
@@ -49,21 +48,9 @@ def main():
     logger(json.dumps(payload, indent=4, sort_keys=True))
     if "message" in payload:
         chat_id = payload["message"]["chat"]["id"]
-        first_name = payload["message"]["from"]["first_name"]
-        if payload["message"]["text"] == "/iniciar":
-            message = "Arrancando motores.."
-            telegramApi.send_message(chat_id, message)
-        elif payload["message"]["text"] == "/hola":
-            message = "Buenas como estamos " + first_name
-            telegramApi.send_message(chat_id, message)
-        elif payload["message"]["text"] == "/ayuda":
-            message = "<b>En que te puedo ayudar</b> " + first_name
-            telegramApi.send_message(chat_id, message)
-        else :
-            #word = payload["message"]["text"]
-            #message = answer(word)
-            message = "No te entiendo"
-            telegramApi.send_message(chat_id, message)
+        text = payload["message"]["text"]
+        message = answer(text)
+        telegramApi.sendmessage(chat_id, message)
     return 'OK', 201
 
 
