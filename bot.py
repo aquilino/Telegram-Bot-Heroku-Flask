@@ -32,10 +32,7 @@ def get_status():
 
 
 @app.route('/webhook', methods=['GET', 'POST'])
-def get_webhook(webhook):
-    logger(webhook)
-    if webhook != webhook:
-        return 'KO', 404
+def get_main():
     try:
         if request.method == 'GET' or not request.json:
             return 'OK', 200
