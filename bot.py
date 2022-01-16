@@ -31,10 +31,10 @@ def get_status():
     return 'Up and running', 201
 
 
-@app.route('/webhook/{os.environ["{BOT_KEY}"]}', methods=['GET', 'POST'])
+@app.route('/webhook', methods=['GET', 'POST'])
 def get_webhook(webhook):
     logger(webhook)
-    if os.environ['BOT_KEY'] != webhook:
+    if webhook != webhook:
         return 'KO', 404
     try:
         if request.method == 'GET' or not request.json:
