@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 from flask import Flask, jsonify, make_response, request
-from telegramapi import TelegramApi
+from telegramapi import *
 import time
 import os
 import sys
