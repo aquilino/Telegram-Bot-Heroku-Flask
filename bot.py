@@ -18,18 +18,18 @@ def logger(message):
 def answer(word):
     api = requests.get(f'{page}{word}')
     json_data = json.loads(api.content)
-#    logger(json.dumps(json_data, indent=4, sort_keys=True))
+    logger(json.dumps(json_data, indent=4, sort_keys=True))
     market_data = json_data["market_data"]["current_price"]["eur"]
     logger(json.dumps(market_data, indent=4, sort_keys=True))
-#    market_cap = json_data["market_data"]["market_cap"]["eur"]
-#    links = json_data["links"]["homepage"][0]
-#    symbol= json_data["symbol"]
-#    try:
-#        if "error" or not json_data:
-#             msg = f"Symbol: {symbol}\nCurrent_price: {market_data}€\nMarket_cap: {market_cap}€\nOfficial_website: {links}"
-#             return msg
-#    except Exception:
-#        return 'error: no se encuentra la monedad', 404
+    market_cap = json_data["market_data"]["market_cap"]["eur"]
+    links = json_data["links"]["homepage"][0]
+    symbol= json_data["symbol"]
+    try:
+        if "error" or not json_data:
+             msg = f"Symbol: {symbol}\nCurrent_price: {market_data}€\nMarket_cap: {market_cap}€\nOfficial_website: {links}"
+             return msg
+    except Exception:
+        return 'error: no se encuentra la monedad', 404
    
 
 
