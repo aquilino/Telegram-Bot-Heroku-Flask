@@ -8,7 +8,6 @@ page = 'https://api.coingecko.com/api/v3/coins/'
 
 app = Flask(__name__)
 
-
 telegramApi = TelegramApi(os.environ["BOT_KEY"])
 
 def logger(message):
@@ -29,7 +28,6 @@ def answer(word):
         return msg
    
 
-
 @app.route('/status', methods=['GET'])
 def get_status():
     return 'Up and running', 201
@@ -48,7 +46,6 @@ def main():
         chat_id = payload["message"]["chat"]["id"]
         text = payload["message"]["text"]
         message = answer(text)
-        telegramApi.send_chat_action("typing")
         telegramApi.send_message(chat_id, message)
         if payload["message"]["text"] == "/distro":
             message = "Selecciona tu distro"
