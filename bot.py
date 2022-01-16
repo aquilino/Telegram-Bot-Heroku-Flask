@@ -32,7 +32,7 @@ def get_status():
 
 
 @app.route('/webhook', methods=['GET', 'POST'])
-def get_main():
+def main():
     try:
         if request.method == 'GET' or not request.json:
             return 'OK', 200
@@ -57,8 +57,8 @@ def get_main():
             chat_id = payload['message']['chat']['id']
             name = payload['message']['chat']['first_name']
             message = "No te entiendo " + name
-            telegramApi.send_message(chat_id, message)   
-        return 'OK', 201
+            telegramApi.send_message(chat_id, message)
+    return 'OK', 201
 
 
 @app.errorhandler(404)
