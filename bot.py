@@ -1,7 +1,11 @@
-from flask import Flask, request, jsonify, make_response
-from telegramApi import TelegramApi
-import os, sys , re, json, time, requests
-
+#!/usr/bin/env python3
+from flask import Flask, jsonify, make_response, request
+from telegramapi import TelegramApi
+import time
+import os
+import sys
+import re
+import json
 #BOT_URL = f'https://api.telegram.org/bot{os.environ["{BOT_KEY}"]}/'  # <-- add your telegram token as environment variable
 page = 'https://api.coingecko.com/api/v3/coins/'
 
