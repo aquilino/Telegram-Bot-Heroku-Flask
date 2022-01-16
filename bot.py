@@ -20,7 +20,7 @@ def answer(word):
     json_data = json.loads(api.content)
 #    logger(json.dumps(json_data, indent=4, sort_keys=True))
     market_data = json_data["market_data"]["current_price"]["eur"]
-    logger(json.dumps(market_data), indet=4, sort_keys=True)
+    logger(json.dumps(market_data), indent=4, sort_keys=True)
 #    market_cap = json_data["market_data"]["market_cap"]["eur"]
 #    links = json_data["links"]["homepage"][0]
 #    symbol= json_data["symbol"]
