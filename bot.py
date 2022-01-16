@@ -51,6 +51,7 @@ def main():
         chat_id = payload["message"]["chat"]["id"]
         text = payload["message"]["text"]
         message = answer(text)
+        telegramApi.send_chat_action("typing")
         telegramApi.send_message(chat_id, message)
         if payload["message"]["text"] == "/distro":
             message = "Selecciona tu distro"
