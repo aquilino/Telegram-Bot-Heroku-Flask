@@ -44,16 +44,17 @@ def main():
         chat_id = payload["message"]["chat"]["id"]
         first_name = payload["message"]["from"]["first_name"]
         if payload["message"]["text"] == "/iniciar":
-            message = "_Arrancando motores.._"
+            message = "Arrancando motores.."
             telegramApi.send_message(chat_id, message)
-        if payload["message"]["text"] == "/hola":
+        elif payload["message"]["text"] == "/hola":
             message = "Buenas como estamos " + first_name
             telegramApi.send_message(chat_id, message)
         elif payload["message"]["text"] == "/ayuda":
             message = "<b>En que te puedo ayudar</b> " + first_name
             telegramApi.send_message(chat_id, message)
         else :
-            message = "*No te entiedo*" + first_name
+            word = payload["message"]["text"]
+            message = answer(word)
             telegramApi.send_message(chat_id, message)
     return 'OK', 201
 
