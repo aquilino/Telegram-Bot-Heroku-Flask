@@ -23,12 +23,8 @@ def answer(word):
     market_cap = json_data["market_data"]["market_cap"]["eur"]
     links = json_data["links"]["homepage"][0]
     symbol= json_data["symbol"]
-    try:
-        if "market_data" in json_data:
-             msg = f"Symbol: {symbol}\nCurrent_price: {market_data}€\nMarket_cap: {market_cap}€\nOfficial_website: {links}"
-             return msg
-    except Exception:
-        return 'error: no se encuentra la monedad', 404
+    msg = f"Symbol: {symbol}\nCurrent_price: {market_data}€\nMarket_cap: {market_cap}€\nOfficial_website: {links}"
+    return msg
    
 
 
