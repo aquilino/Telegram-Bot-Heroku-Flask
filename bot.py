@@ -48,6 +48,21 @@ def main():
         text = payload["message"]["text"]
         message = answer(text)
         telegramApi.send_message(chat_id, message)
+        elif payload["message"]["text"] == "/distro":
+            message = "Selecciona tu distro"
+            buttons = []
+            buttons.append({"text": "Escritorio",
+                           "callback_data": "desktop"})
+            buttons.append({"text": "Servidor",
+                           "callback_data": "server"})
+            inline_keyboard = json.dumps({"inline_keyboard": [buttons]})
+            telegramApi.send_message(chat_id, message, inline_keyboard)
+        elif "callback_query" in payload:
+            chat_id = payload["callback_query"]["message"]["chat"]["id"]
+            if payload["callback_query"]["data"] == "desktop":
+                telegramApi.send_message(chat_id, "Has elegido escritorio")
+            if payload["callback_query"]["data"] == "server":
+                telegramApi.send_message(chat_id, "Has elegido servidor")
     return 'OK', 201
 
 
