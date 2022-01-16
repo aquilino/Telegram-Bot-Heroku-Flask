@@ -64,6 +64,6 @@ def not_found(error):
 
 
 if __name__ == '__main__': 
-    logger.log("\n\n[!] Arrancando maquinas....\n\n")
-    Logger.log("\t\n[*] Bot iniciado\n\n")
+    logger("\n\n[!] Arrancando maquinas....\n\n")
+    logger("\t\n[*] Bot iniciado\n\n")
     app.run(host='0.0.0.0', port=int(os.environ.get('PORT', 5000)), debug=True)
