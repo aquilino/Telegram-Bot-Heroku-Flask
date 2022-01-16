@@ -18,7 +18,7 @@ def logger(message):
 def answer(word):
     api = requests.get(f'{page}{word}')
     json_data = json.loads(api.content)
-
+    logger(json.dumps(json_data, indent=4, sort_keys=True))
     market_data = json_data['market_data']['current_price']['eur']
     market_cap = json_data['market_data']['market_cap']['eur']
     links = json_data['links']['homepage'][0]
@@ -42,10 +42,8 @@ def main():
     logger(json.dumps(payload, indent=4, sort_keys=True))
     if "message" in payload:
         chat_id = payload["message"]["chat"]["id"]
-        if payload['message']['text'] == '/hola':
-            chat_id = payload['message']['chat']['id']
-            name = payload['message']['chat']['first_name']
-            #text = payload['message']['text']
+        name = payload["message"]["chat"]["first_name"]
+        if payload["message"]["text"] == "/hola":
             message = "Hola mi Amo!!"
             telegramApi.send_message(chat_id, message)
 #        elif payload['message']['text'] != '/hola':
@@ -54,8 +52,6 @@ def main():
 #            message = answer(text)
 #            telegramApi.send_message(chat_id, message)
         else:
-            chat_id = payload['message']['chat']['id']
-            name = payload['message']['chat']['first_name']
             message = "No te entiendo " + name
             telegramApi.send_message(chat_id, message)
     return 'OK', 201
