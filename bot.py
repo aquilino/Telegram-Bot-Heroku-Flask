@@ -40,6 +40,17 @@ def main():
         return 'OK', 200
     payload = request.json
     logger(json.dumps(payload, indent=4, sort_keys=True))
+    if "message" in payload:
+    chat_id = payload["message"]["chat"]["id"]
+    if payload["message"]["text"] == "/hola":
+        message = "Coca Cola"
+        telegramApi.send_message(chat_id, message)
+    elif payload["message"]["text"] == "/ayuda":
+        message = "Coca Cola"
+        telegramApi.send_message(chat_id, message)
+    else :
+        message = "No te entiendo"
+        telegramApi.send_message(chat_id, message)
     return 'OK', 201
 
 
