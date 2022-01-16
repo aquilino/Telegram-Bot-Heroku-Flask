@@ -18,7 +18,7 @@ def logger(message):
 def answer(word):
     api = requests.get(f'{page}{word}')
     json_data = json.loads(api.content)
-    logger(json.dumps(json_data, indent=4, sort_keys=True))
+#    logger(json.dumps(json_data, indent=4, sort_keys=True))
     if "market_data" in json_data:
         market_data = json_data["market_data"]["current_price"]["eur"]
         market_cap = json_data["market_data"]["market_cap"]["eur"]
