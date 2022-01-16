@@ -48,7 +48,7 @@ def main():
         text = payload["message"]["text"]
         message = answer(text)
         telegramApi.send_message(chat_id, message)
-        elif payload["message"]["text"] == "/distro":
+        if payload["message"]["text"] == "/distro":
             message = "Selecciona tu distro"
             buttons = []
             buttons.append({"text": "Escritorio",
