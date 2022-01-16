@@ -43,6 +43,7 @@ def main():
     if "message" in payload:
         chat_id = payload["message"]["chat"]["id"]
         name = payload["message"]["chat"]["first_name"]
+        text = payload["message"]["text"]
         if payload["message"]["text"] == "/hola":
             message = "Hola mi Amo!!"
             telegramApi.send_message(chat_id, message)
