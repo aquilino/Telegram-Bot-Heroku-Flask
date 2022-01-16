@@ -50,7 +50,7 @@ def main():
         chat_id = payload["message"]["chat"]["id"]
         text = payload["message"]["text"]
         message = answer(text)
-        telegramApi.sendmessage(chat_id, message)
+        telegramApi.send_message(chat_id, message)
     return 'OK', 201
 
 
