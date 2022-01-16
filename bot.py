@@ -53,6 +53,7 @@ def main():
             message = "<b>En que te puedo ayudar</b> " + first_name
             telegramApi.send_message(chat_id, message)
         else :
+            text = payload["message"]["text"]
             message = answer(text)
             telegramApi.send_message(chat_id, message)
     return 'OK', 201
