@@ -24,7 +24,7 @@ def answer(word):
     links = json_data["links"]["homepage"][0]
     symbol= json_data["symbol"]
     try:
-        if "error" or not json_data:
+        if "market_data" in json_data:
              msg = f"Symbol: {symbol}\nCurrent_price: {market_data}€\nMarket_cap: {market_cap}€\nOfficial_website: {links}"
              return msg
     except Exception:
