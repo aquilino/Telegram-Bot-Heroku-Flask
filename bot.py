@@ -43,7 +43,7 @@ def main():
     if "message" in payload:
         chat_id = payload["message"]["chat"]["id"]
         first_name = payload["message"]["from"]["first_name"]
-        if payload["message"]["text"] == "/start":
+        if payload["message"]["text"] == "/iniciar":
             message = "_Arrancando motores.._"
             telegramApi.send_message(chat_id, message, "MarkdownV2")
         if payload["message"]["text"] == "/hola":
@@ -53,7 +53,7 @@ def main():
             message = "<b>En que te puedo ayudar</b> " + first_name
             telegramApi.send_message(chat_id, message)
         else :
-            message = "No te entiendo"
+            message = answer(text)
             telegramApi.send_message(chat_id, message)
     return 'OK', 201
 
