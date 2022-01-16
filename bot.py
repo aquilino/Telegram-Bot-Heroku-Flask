@@ -48,7 +48,7 @@ def main():
             telegramApi.send_message(chat_id, message)
         elif payload["message"]["text"] == "/ayuda":
             message = "<b>En que te puedo ayudar</b> " + first_name
-            telegramApi.send_message(chat_id, message, 'HTML')
+            telegramApi.send_message(chat_id, message)
         else :
             message = "No te entiendo"
             telegramApi.send_message(chat_id, message)
