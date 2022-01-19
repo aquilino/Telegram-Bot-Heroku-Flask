@@ -61,7 +61,7 @@ def main():
                            "url": "https://google.es"})
             inline_keyboard = json.dumps({"inline_keyboard": [buttons]})
             telegramApi.send_message(chat_id, message, inline_keyboard)
-         elif re.match(PATTERN, payload["message"]["text"], re.IGNORECASE):
+        elif re.match(PATTERN, payload["message"]["text"], re.IGNORECASE):
             menssage = "Eso no se dice"
             telegramApi.send_message(chat_id, message)
     return 'OK', 201
