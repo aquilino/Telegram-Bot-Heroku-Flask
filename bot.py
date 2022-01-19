@@ -8,7 +8,7 @@ import os, sys , re, json, time, requests, schedule
 app = Flask(__name__)
 
 page = 'https://api.coingecko.com/api/v3/coins/'
-PATTERN = r'(.*polla.*|.*anc[xh]o)*|culo|inutil|gilipollas|hdp)'
+#PATTERN = r'(.*polla.*|.*anc[xh]o)*|culo|inutil|gilipollas|hdp)'
 
 telegramApi = TelegramApi(os.environ["BOT_KEY"])
 
@@ -53,10 +53,10 @@ def main():
         text = payload["message"]["text"]
         message = answer(text.lower())
         telegramApi.send_message(chat_id, message)
-        if re.match(PATTERN, payload["message"]["text"], re.IGNORECASE):
-            menssage = "Eso no se dice"
-            telegramApi.send_message(chat_id, message)
-        elif payload["message"]["text"] == "/enlaces":
+#        if re.match(PATTERN, payload["message"]["text"], re.IGNORECASE):
+#            menssage = "Eso no se dice"
+#            telegramApi.send_message(chat_id, message)
+        if payload["message"]["text"] == "/enlaces":
             message = "Enlaces de interes"
             buttons = []
             buttons.append({"text": "Informacion",
