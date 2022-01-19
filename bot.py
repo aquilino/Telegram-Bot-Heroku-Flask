@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 from flask import Flask, request, jsonify, make_response
 from telegramApi import TelegramApi
-import os, sys , re, json, time, requests
+import os, sys , re, json, time, requests, schedule
 
 #BOT_URL = f'https://api.telegram.org/bot{os.environ["{BOT_KEY}"]}/'  # <-- add your telegram token as environment variable
 page = 'https://api.coingecko.com/api/v3/coins/'
@@ -27,6 +27,10 @@ def answer(word):
         msg = f"Symbol: {symbol}\nCurrent_price: {market_data}€\nMarket_cap: {market_cap}€\nOfficial_website: {links}"
         return msg
    
+def report():
+    coin = "baby-doge-coin"
+    message = answer(coin.lower())
+    telegramApi.send_message(chat_id, message)
 
 @app.route('/status', methods=['GET'])
 def get_status():
@@ -67,4 +71,8 @@ def not_found(error):
 if __name__ == '__main__': 
     logger("\n\n[!] Arrancando maquinas....\n\n")
     logger("\t\n[*] Bot iniciado\n\n")
-    app.run(host='0.0.0.0', port=int(os.environ.get('PORT', 5000)), debug=True)
+    app.run(host='0.0.0.0', port=int(os.environ.get('PORT', 5000)), debug=True)   
+ #  schedule.every().day.at("12:00").do(report)
+ #  while True:
+ #    schedule.run_pending()
+ #    time.sleep(1)
