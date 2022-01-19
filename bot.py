@@ -4,10 +4,11 @@ from telegramApi import TelegramApi
 import os, sys , re, json, time, requests, schedule
 
 #BOT_URL = f'https://api.telegram.org/bot{os.environ["{BOT_KEY}"]}/'  # <-- add your telegram token as environment variable
-page = 'https://api.coingecko.com/api/v3/coins/'
-PATTERN = r'(.*polla.*|.*anc[xh]o)*|culo|inutil|gilipollas|hdp)'
 
 app = Flask(__name__)
+
+page = 'https://api.coingecko.com/api/v3/coins/'
+PATTERN = r'(.*polla.*|.*anc[xh]o)*|culo|inutil|gilipollas|hdp)'
 
 telegramApi = TelegramApi(os.environ["BOT_KEY"])
 
@@ -49,14 +50,14 @@ def main():
     logger(json.dumps(payload, indent=4, sort_keys=True))
     if "message" in payload:
         chat_id = payload["message"]["chat"]["id"]
-        coin = payload["message"]["text"]
-        message = answer(coin.lower())
+        text = payload["message"]["text"]
+        message = answer(text.lower())
         telegramApi.send_message(chat_id, message)
         if payload["message"]["text"] == "/enlaces":
             message = "Enlaces de interes"
             buttons = []
-            buttons.append({"text": "Youtube",
-                           "url": "https://youtube.es"})
+            buttons.append({"text": "Informacion",
+                           "url": "https://telegra.ph/The-Best-c0in-01-19"})
             buttons.append({"text": "Google",
                            "url": "https://google.es"})
             inline_keyboard = json.dumps({"inline_keyboard": [buttons]})
