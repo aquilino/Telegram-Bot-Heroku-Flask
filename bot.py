@@ -5,6 +5,7 @@ import os, sys , re, json, time, requests, schedule
 
 #BOT_URL = f'https://api.telegram.org/bot{os.environ["{BOT_KEY}"]}/'  # <-- add your telegram token as environment variable
 page = 'https://api.coingecko.com/api/v3/coins/'
+PATTERN = r'(.*polla.*|.*anc[xh]o)*|culo|inutil|gilipollas|hdp'
 
 app = Flask(__name__)
 
@@ -29,7 +30,7 @@ def answer(word):
    
 def report():
     coin = "baby-doge-coin"
-    message = answer(coin.lower())
+    message = answer(coin)
     telegramApi.send_message(chat_id, message)
 
 @app.route('/status', methods=['GET'])
@@ -60,6 +61,9 @@ def main():
                            "url": "https://google.es"})
             inline_keyboard = json.dumps({"inline_keyboard": [buttons]})
             telegramApi.send_message(chat_id, message, inline_keyboard)
+         elif re.match(PATTERN, payload["message"]["text"], re.IGNORECASE):
+            menssage = "Eso no se dice"
+            telegramApi.send_message(chat_id, message)
     return 'OK', 201
 
 
