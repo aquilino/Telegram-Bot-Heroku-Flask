@@ -53,7 +53,10 @@ def main():
         text = payload["message"]["text"]
         message = answer(text.lower())
         telegramApi.send_message(chat_id, message)
-        if payload["message"]["text"] == "/enlaces":
+        if re.match(PATTERN, payload["message"]["text"], re.IGNORECASE):
+            menssage = "Eso no se dice"
+            telegramApi.send_message(chat_id, message)
+        elif payload["message"]["text"] == "/enlaces":
             message = "Enlaces de interes"
             buttons = []
             buttons.append({"text": "Informacion",
@@ -62,9 +65,6 @@ def main():
                            "url": "https://google.es"})
             inline_keyboard = json.dumps({"inline_keyboard": [buttons]})
             telegramApi.send_message(chat_id, message, inline_keyboard)
-        elif re.match(PATTERN, payload["message"]["text"], re.IGNORECASE):
-            menssage = "Eso no se dice"
-            telegramApi.send_message(chat_id, message)
     return 'OK', 201
 
 
