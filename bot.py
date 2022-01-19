@@ -56,6 +56,7 @@ def main():
         if re.match(PATTERN, payload["message"]["text"], re.IGNORECASE):
             menssage = "Eso no se dice"
             telegramApi.send_message(chat_id, message)
+            logger(json.dumps(payload, indent=4, sort_keys=True))
         elif payload["message"]["text"] == "/enlaces":
             message = "Enlaces de interes"
             buttons = []
