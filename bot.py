@@ -26,7 +26,7 @@ def answer(word):
         market_cap = json_data["market_data"]["market_cap"]["eur"]
         links = json_data["links"]["homepage"][0]
         symbol= json_data["symbol"]
-        msg = f"Symbol: {symbol}\nCurrent_price: {market_data}€\nMarket_cap: {market_cap}€\nOfficial_website: {links}"
+        msg = f"Symbol: {symbol}\nPrecio actual: {market_data}€\nCapital de Mercado: {market_cap}€\nPagina oficial: {links}"
         return msg
    
 def report():
