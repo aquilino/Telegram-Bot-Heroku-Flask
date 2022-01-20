@@ -70,7 +70,7 @@ def main():
             message = "Eso no se dice"
             telegramApi.send_message(chat_id, message)
             logger(json.dumps(payload, indent=4, sort_keys=True))
-        elif payload["message"]["text"] == "/enlaces":
+        elif payload["channel_post"]["text"] == "/enlaces":
             message = "Enlaces de interes"
             buttons = []
             buttons.append({"text": "Informacion",
