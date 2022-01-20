@@ -66,7 +66,19 @@ def main():
         msg = payload["channel_post"]["text"]
         message = answer(msg.lower())
         telegramApi.send_message(chat_id, message)
-        
+        if re.match(PATTERN, payload["channel_post"]["text"], re.IGNORECASE):
+            message = "Eso no se dice"
+            telegramApi.send_message(chat_id, message)
+            logger(json.dumps(payload, indent=4, sort_keys=True))
+        elif payload["message"]["text"] == "/enlaces":
+            message = "Enlaces de interes"
+            buttons = []
+            buttons.append({"text": "Informacion",
+                           "url": "https://telegra.ph/The-Best-c0in-01-19"})
+            buttons.append({"text": "Google",
+                           "url": "https://google.es"})
+            inline_keyboard = json.dumps({"inline_keyboard": [buttons]})
+            telegramApi.send_message(chat_id, message, inline_keyboard)
     return 'OK', 201
 
 
