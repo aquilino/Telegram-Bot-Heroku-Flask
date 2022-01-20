@@ -1,14 +1,14 @@
 #!/usr/bin/env python3
 from flask import Flask, request, jsonify, make_response
 from telegramApi import TelegramApi
-import os, sys , re, json, time, requests, schedule
+import os, sys , re, json, time, requests
 
 #BOT_URL = f'https://api.telegram.org/bot{os.environ["{BOT_KEY}"]}/'  # <-- add your telegram token as environment variable
 
 app = Flask(__name__)
 
 page = 'https://api.coingecko.com/api/v3/coins/'
-#PATTERN = r'(.*polla.*|.*anc[xh]o.*|culo|inutil|gilipollas|hdp)'
+
 
 telegramApi = TelegramApi(os.environ["BOT_KEY"])
 
@@ -28,11 +28,6 @@ def answer(word):
         symbol= json_data["symbol"]
         msg = f"Symbol: {symbol}\nPrecio actual: {market_data}€\nCapital de Mercado: {market_cap}€\nPagina oficial: {links}"
         return msg
-   
-def report():
-    coin = "baby-doge-coin"
-    message = answer(coin)
-    telegramApi.send_message(chat_id, message)
 
 @app.route('/status', methods=['GET'])
 def get_status():
@@ -53,10 +48,6 @@ def main():
         text = payload["message"]["text"]
         message = answer(text.lower())
         telegramApi.send_message(chat_id, message)
-#        if re.match(PATTERN, payload["message"]["text"], re.IGNORECASE):
-#            menssage = "Eso no se dice"
-#            telegramApi.send_message(chat_id, message)
-#            logger(json.dumps(payload, indent=4, sort_keys=True))
         if payload["message"]["text"] == "/enlaces":
             message = "Enlaces de interes"
             buttons = []
@@ -77,8 +68,4 @@ def not_found(error):
 if __name__ == '__main__': 
     logger("\n\n[!] Arrancando maquinas....\n\n")
     logger("\t\n[*] Bot iniciado\n\n")
-    app.run(host='0.0.0.0', port=int(os.environ.get('PORT', 5000)), debug=True)   
- #  schedule.every().day.at("12:00").do(report)
- #  while True:
- #    schedule.run_pending()
- #    time.sleep(1)
+    app.run(host='0.0.0.0', port=int(os.environ.get('PORT', 5000)), debug=True)
