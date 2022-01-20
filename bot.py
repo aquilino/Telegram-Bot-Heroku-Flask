@@ -45,8 +45,8 @@ def main():
     logger(json.dumps(payload, indent=4, sort_keys=True))
     if "message" in payload:
         chat_id = payload["message"]["chat"]["id"]
-        text = payload["message"]["text"]
-        message = answer(text.lower())
+        msg = payload["message"]["text"]
+        message = answer(msg.lower())
         telegramApi.send_message(chat_id, message)
         if payload["message"]["text"] == "/enlaces":
             message = "Enlaces de interes"
