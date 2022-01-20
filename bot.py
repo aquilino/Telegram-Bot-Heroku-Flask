@@ -64,7 +64,7 @@ def main():
     elif "channel_post" in payload:
         chat_id = payload["channel_post"]["chat"]["id"]
         msg = payload["channel_post"]["text"]
-        message = "Hola canal"
+        message = answer(msg.lower())
         telegramApi.send_message(chat_id, message)
         
     return 'OK', 201
