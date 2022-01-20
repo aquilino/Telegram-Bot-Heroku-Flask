@@ -49,7 +49,7 @@ def main():
         message = answer(msg.lower())
         telegramApi.send_message(chat_id, message)
         if re.match(PATTERN, payload["message"]["text"], re.IGNORECASE):
-            menssage = "Eso no se dice"
+            message = "Eso no se dice"
             telegramApi.send_message(chat_id, message)
             logger(json.dumps(payload, indent=4, sort_keys=True))
         elif payload["message"]["text"] == "/enlaces":
