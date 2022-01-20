@@ -61,6 +61,12 @@ def main():
                            "url": "https://google.es"})
             inline_keyboard = json.dumps({"inline_keyboard": [buttons]})
             telegramApi.send_message(chat_id, message, inline_keyboard)
+    elif "channel_post" in payload:
+        chat_id = payload["channel_post"]["chat"]["id"]
+        msg = payload["channel_post"]["text"]
+        message = "Hola canal"
+        telegramApi.send_message(chat_id, message)
+        
     return 'OK', 201
 
 
