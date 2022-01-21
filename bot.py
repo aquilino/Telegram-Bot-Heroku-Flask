@@ -8,7 +8,7 @@ import os, sys , re, json, time, requests
 app = Flask(__name__)
 
 page = 'https://api.coingecko.com/api/v3/coins/'
-PATTERN = r'(.*polla.*|.*anc[xh]o.*|culo|inutil|gilipollas|hdp)'
+PATTERN = r'(.*polla.*|culo|inutil|.*puta.*|hdp|gili)'
 
 telegramApi = TelegramApi(os.environ["BOT_KEY"])
 
